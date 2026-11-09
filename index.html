@@ -1,0 +1,731 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>赵肖迪 · 简历 | AI 应用开发工程师</title>
+<style>
+  :root{
+    --blue:#2563EB; --blue-d:#1D4ED8; --blue-l:#60A5FA;
+    --tint:#EFF6FF; --tint2:#DBEAFE; --tint3:#F6F9FF;
+    --bg:#FFFFFF; --line:#E3EAF6; --line2:#CBD8EC;
+    --txt:#0F1B33; --dim:#4A5A75; --dim2:#7C8AA5;
+    --font:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Noto Sans SC",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;font-family:var(--font);color:var(--txt);background:var(--bg);
+    -webkit-font-smoothing:antialiased;max-width:100%;overflow-x:hidden;
+    background-image:
+      radial-gradient(820px 460px at 6% -8%, rgba(37,99,235,.07), transparent 62%),
+      radial-gradient(700px 420px at 98% 0%, rgba(37,99,235,.05), transparent 60%);
+    background-attachment:fixed;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 22px 96px;display:grid;
+        grid-template-columns:300px minmax(0,1fr);gap:34px;align-items:start}
+
+  /* ================= 左：数字人 ================= */
+  .rail{position:sticky;top:26px}
+  .card{border:1px solid var(--line);border-radius:20px;background:#fff;padding:18px;
+        box-shadow:0 8px 28px rgba(37,99,235,.06)}
+
+  .avatar-box{position:relative;display:flex;justify-content:center;padding:6px 0 2px}
+  .ring{position:absolute;width:186px;height:186px;border-radius:50%;
+        background:radial-gradient(circle, rgba(37,99,235,.13), rgba(37,99,235,0) 68%);
+        filter:blur(6px);opacity:.9;top:8px;animation:spin 20s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  #avatar{position:relative;width:172px;height:auto;animation:float 6s ease-in-out infinite;
+          filter:drop-shadow(0 10px 18px rgba(37,99,235,.12))}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+  #eyes{transform-box:fill-box;transform-origin:center}
+  .blink #eyes{animation:blink .16s ease}
+  @keyframes blink{50%{transform:scaleY(.08)}}
+  #mouthLine,#lipLower{transition:opacity .1s}
+  #mouthOpen{transform-box:fill-box;transform-origin:center;transition:opacity .1s}
+  .speaking #mouthLine,.speaking #lipLower{opacity:0}
+  .speaking #mouthOpen{opacity:1;animation:talk .24s ease-in-out infinite alternate}
+  @keyframes talk{from{transform:scaleY(.5) scaleX(.94)}to{transform:scaleY(2.7) scaleX(1.1)}}
+
+  .who{text-align:center;margin-top:10px}
+  .who h1{margin:0;font-size:22px;letter-spacing:.08em;color:var(--txt)}
+  .who p{margin:6px 0 0;font-size:12.5px;color:var(--blue);letter-spacing:.1em}
+
+  .status{display:flex;align-items:center;justify-content:center;gap:7px;margin:12px auto 0;
+          padding:6px 13px;border-radius:999px;border:1px solid var(--line);
+          background:var(--tint3);font-size:12px;color:var(--dim);width:max-content}
+  .status i{width:6px;height:6px;border-radius:50%;background:var(--line2);transition:.2s}
+  .status.live i{background:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.15);animation:pulse 1.2s infinite}
+  @keyframes pulse{50%{opacity:.35}}
+
+  .btn{width:100%;margin-top:14px;border:1px solid var(--blue);border-radius:12px;cursor:pointer;
+       font-family:var(--font);font-size:13.5px;padding:11px 14px;color:#fff;
+       background:linear-gradient(135deg,var(--blue),var(--blue-d));
+       box-shadow:0 8px 20px rgba(37,99,235,.22);transition:.18s;font-weight:600}
+  .btn:hover{filter:brightness(1.06);box-shadow:0 10px 24px rgba(37,99,235,.28)}
+  .btn.ghost{background:#fff;border-color:var(--line2);color:var(--dim);box-shadow:none;font-weight:400}
+  .btn.ghost:hover{background:var(--tint);border-color:#BFDBFE;color:var(--blue)}
+
+  .contact{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:9px}
+  .contact .row{display:flex;gap:9px;align-items:baseline;font-size:12.5px;color:var(--dim);word-break:break-all}
+  .contact .k{flex:0 0 46px;font-size:11px;color:var(--dim2);letter-spacing:.1em}
+
+  .nav{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+  .nav a{font-size:12px;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:5px 11px;transition:.18s;background:#fff}
+  .nav a:hover{color:var(--blue-d);border-color:#BFDBFE;background:var(--tint)}
+
+  /* ================= 右：简历正文 ================= */
+  .hero{border:1px solid #DBEAFE;border-left:4px solid var(--blue);border-radius:18px;padding:24px 26px;
+        background:linear-gradient(135deg,var(--tint),#fff 62%);margin-bottom:22px;position:relative;overflow:hidden;
+        box-shadow:0 8px 26px rgba(37,99,235,.06)}
+  .hero::after{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;
+        background:radial-gradient(circle, rgba(37,99,235,.10), transparent 70%)}
+  .hero h2{margin:0;font-size:30px;letter-spacing:.06em;color:var(--txt)}
+  .hero .role{margin:9px 0 0;font-size:14.5px;color:var(--dim);letter-spacing:.04em}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+  .tag{font-size:11.5px;color:var(--blue-d);background:var(--tint);border:1px solid #BFDBFE;
+       padding:4px 10px;border-radius:999px}
+  .tag.g{color:var(--blue-d);background:#fff;border-color:#BFDBFE}
+  .tag.p{color:var(--blue-d);background:#fff;border-color:#BFDBFE}
+
+  .sec{margin-bottom:26px;scroll-margin-top:24px}
+  .sec-h{display:flex;align-items:center;gap:10px;margin:0 0 14px}
+  .sec-h .no{font-size:11px;color:var(--blue);letter-spacing:.18em;border:1px solid #BFDBFE;
+             background:var(--tint);border-radius:6px;padding:3px 7px}
+  .sec-h h3{margin:0;font-size:17px;letter-spacing:.06em;color:var(--txt)}
+  .sec-h .line{flex:1;height:1px;background:linear-gradient(90deg,#CBD8EC,transparent)}
+  .saybtn{border:1px solid #BFDBFE;background:var(--tint);color:var(--blue-d);
+          font-family:var(--font);font-size:11.5px;padding:5px 10px;border-radius:8px;cursor:pointer;transition:.18s;white-space:nowrap}
+  .saybtn:hover{background:#E0EAFF;border-color:#93C5FD}
+  .saybtn.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+  .kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .kv .cell{border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:#fff;transition:.18s}
+  .kv .cell:hover{border-color:#BFDBFE;background:var(--tint3)}
+  .kv .k{font-size:10.5px;color:var(--dim2);letter-spacing:.12em}
+  .kv .v{font-size:13.5px;margin-top:5px;color:var(--txt);word-break:break-all}
+
+  .skill{display:grid;gap:9px}
+  .skill .item{display:flex;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;transition:.18s}
+  .skill .item:hover{border-color:#BFDBFE;background:var(--tint3)}
+  .skill .idx{flex:0 0 auto;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:11px;
+              background:var(--tint);border:1px solid #BFDBFE;color:var(--blue-d)}
+  .skill .tx{font-size:13.2px;line-height:1.8;color:var(--dim)}
+  .skill .tx b{color:var(--txt);font-weight:600}
+
+  .job{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:#fff;box-shadow:0 4px 16px rgba(37,99,235,.04)}
+  .job-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:4px}
+  .job-top .co{font-size:15.5px;font-weight:600;color:var(--txt)}
+  .job-top .pos{font-size:12.5px;color:var(--blue-d);background:var(--tint);border:1px solid #BFDBFE;padding:2px 8px;border-radius:999px}
+  .job-top .time{margin-left:auto;font-size:12px;color:var(--dim2);letter-spacing:.06em}
+  .job .duty{margin:10px 0 0;font-size:13px;line-height:1.8;color:var(--dim)}
+  .job .duty b{color:var(--txt);font-weight:600}
+
+  .proj{border:1px solid var(--line);border-radius:16px;background:#fff;padding:17px 18px;margin-bottom:12px;transition:.2s;
+        box-shadow:0 4px 16px rgba(37,99,235,.04)}
+  .proj:hover{border-color:#BFDBFE;box-shadow:0 10px 26px rgba(37,99,235,.09)}
+  .proj-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .proj-top .nm{font-size:15.5px;font-weight:600;letter-spacing:.02em;color:var(--txt)}
+  .proj-top .role{font-size:11.5px;color:var(--blue-d);border:1px solid #BFDBFE;
+                  background:var(--tint);padding:2px 8px;border-radius:999px}
+  .proj-top .time{margin-left:auto;font-size:12px;color:var(--dim2);letter-spacing:.05em}
+  .proj .bg{margin:9px 0 0;font-size:12.8px;line-height:1.85;color:var(--dim);
+            border-left:3px solid #DBEAFE;padding-left:11px}
+  .proj .bg b{color:var(--blue-d);font-weight:600}
+  .proj ul{margin:11px 0 0;padding-left:0;list-style:none;display:grid;gap:8px}
+  .proj li{position:relative;padding-left:16px;font-size:12.9px;line-height:1.85;color:var(--dim)}
+  .proj li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--blue)}
+  .proj li b{color:var(--txt);font-weight:600}
+  .ptags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+
+  .honor{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .honor .cell{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;font-size:13px;color:var(--txt)}
+  .honor .cell em{display:block;font-style:normal;font-size:10.5px;color:var(--dim2);letter-spacing:.12em;margin-bottom:5px}
+
+  /* 正在朗读的高亮 */
+  .say.speaking{background:var(--tint)!important;border-color:#93C5FD!important;
+                box-shadow:inset 3px 0 0 var(--blue);border-radius:10px;transition:.2s}
+
+  /* 底部字幕条 */
+  .cap{position:fixed;left:50%;bottom:20px;transform:translate(-50%,26px);opacity:0;pointer-events:none;
+       width:min(960px,calc(100% - 32px));z-index:50;transition:.28s}
+  .cap.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+  .cap-in{display:flex;align-items:center;gap:12px;border:1px solid #DBEAFE;border-radius:14px;
+          padding:11px 14px;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);
+          box-shadow:0 16px 40px rgba(37,99,235,.16)}
+  .cap-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex:0 0 auto;
+           box-shadow:0 0 0 3px rgba(37,99,235,.14)}
+  .cap-tx{flex:1;font-size:13.5px;line-height:1.6;color:var(--txt);max-height:44px;overflow:hidden}
+  .cap-btn{border:1px solid #BFDBFE;background:var(--tint);color:var(--blue-d);font-family:var(--font);
+           font-size:12px;padding:6px 11px;border-radius:8px;cursor:pointer;white-space:nowrap}
+  .cap-btn:hover{background:#E0EAFF}
+  .cap select{background:#fff;color:var(--blue-d);border:1px solid #BFDBFE;border-radius:8px;
+              padding:5px 6px;font-family:var(--font);font-size:12px;outline:none}
+
+  @media (max-width:980px){
+    .wrap{grid-template-columns:1fr;gap:20px;padding:16px 14px 96px}
+    .rail{position:static}
+    .rail .card{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center}
+    .avatar-box{grid-row:span 2}
+    #avatar{width:140px}
+    .who{text-align:left;margin:0}
+    .status{margin:8px 0 0}
+    .contact{grid-column:1/-1;grid-template-columns:repeat(2,minmax(0,1fr))}
+    .nav{grid-column:1/-1}
+    .kv{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .hero h2{font-size:24px}
+  }
+  @media (max-width:560px){
+    .kv,.honor,.contact{grid-template-columns:1fr}
+    .rail .card{grid-template-columns:1fr;text-align:center}
+    .avatar-box{justify-content:center}
+    .who{text-align:center}
+  }
+
+  @media print{
+    body{background:#fff;color:#111;background-image:none}
+    .rail,.cap,.saybtn,.nav{display:none!important}
+    .wrap{display:block;max-width:none;padding:0}
+    .hero,.card,.proj,.job,.kv .cell,.skill .item,.honor .cell{background:#fff!important;border-color:#ddd!important;box-shadow:none!important}
+    .proj li,.skill .tx,.job .duty,.proj .bg{color:#222!important}
+    .sec{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ================= 左：数字人 ================= -->
+  <aside class="rail">
+    <div class="card">
+      <div class="avatar-box">
+        <div class="ring"></div>
+        <svg id="avatar" viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg" aria-label="数字人形象">
+          <defs>
+            <linearGradient id="gTint" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#EFF6FF"/><stop offset="1" stop-color="#DBEAFE"/>
+            </linearGradient>
+            <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#1D4ED8"/>
+            </linearGradient>
+          </defs>
+
+          <circle cx="120" cy="150" r="112" fill="url(#gTint)" opacity=".55"/>
+
+          <!-- 身体 -->
+          <path d="M18 312 C26 240 72 214 120 214 C168 214 214 240 222 312 Z"
+                fill="#FFFFFF" stroke="#2563EB" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M105 214 L120 238 L135 214 L126 209 L114 209 Z" fill="url(#gTint)" stroke="#2563EB" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M120 238 L114 209 L97 216 L106 256 Z" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M120 238 L135 209 L152 216 L143 256 Z" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.2" stroke-linejoin="round"/>
+
+          <!-- 脖子 -->
+          <path d="M107 178 h26 v26 c0 9 -6 14 -13 14 s-13 -5 -13 -14 z" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.6"/>
+          <path d="M107 178 h26 v10 c-8 6 -18 6 -26 0 z" fill="#DBEAFE" opacity=".85"/>
+
+          <!-- 耳朵 -->
+          <ellipse cx="66" cy="124" rx="7.5" ry="10.5" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.4"/>
+          <ellipse cx="174" cy="124" rx="7.5" ry="10.5" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.4"/>
+
+          <!-- 脸 -->
+          <path d="M120 46 c-31 0 -55 25 -55 57 c0 11 1 21 3.5 31 c6.5 28 27 52 51.5 52 s45 -24 51.5 -52
+                   c2.5 -10 3.5 -20 3.5 -31 c0 -32 -24 -57 -55 -57 z"
+                fill="#FFFFFF" stroke="#2563EB" stroke-width="3"/>
+
+          <!-- 头发 -->
+          <path d="M60 100 C58 62 86 42 120 42 C154 42 182 62 180 100
+                   C172 88 164 80 155 76 C145 82 133 85 120 85 C107 85 95 82 85 76
+                   C76 80 68 88 60 100 Z" fill="url(#gTint)" stroke="#2563EB" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M60 100 c-1 12 2 22 6 28 c3 -8 4 -17 4 -26" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M180 100 c1 12 -2 22 -6 28 c-3 -8 -4 -17 -4 -26" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M96 54 q26 -10 50 -1" stroke="#93C5FD" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+          <!-- 眉 -->
+          <path d="M87 104 q13 -7 26 -1" stroke="#1E40AF" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M127 103 q14 -6 26 1" stroke="#1E40AF" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+          <!-- 眼 -->
+          <g id="eyes">
+            <ellipse cx="101" cy="124" rx="9.6" ry="7.6" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+            <ellipse cx="139" cy="124" rx="9.6" ry="7.6" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+            <circle cx="102" cy="125" r="4.4" fill="#1D4ED8"/>
+            <circle cx="140" cy="125" r="4.4" fill="#1D4ED8"/>
+            <circle cx="103.6" cy="123.2" r="1.4" fill="#FFFFFF"/>
+            <circle cx="141.6" cy="123.2" r="1.4" fill="#FFFFFF"/>
+          </g>
+
+          <!-- 眼镜 -->
+          <g stroke="#2563EB" stroke-width="2.2" fill="rgba(37,99,235,.05)">
+            <rect x="88.5" y="112.5" width="25" height="21" rx="7"/>
+            <rect x="126.5" y="112.5" width="25" height="21" rx="7"/>
+            <path d="M113.5 122 q6.5 -4 13 0" stroke-linecap="round"/>
+          </g>
+
+          <!-- 腮红（浅蓝） -->
+          <ellipse cx="84" cy="146" rx="9" ry="5" fill="#BFDBFE" opacity=".75"/>
+          <ellipse cx="156" cy="146" rx="9" ry="5" fill="#BFDBFE" opacity=".75"/>
+
+          <!-- 鼻 -->
+          <path d="M120 133 v8 q-4 3.4 -7 2.4" stroke="#2563EB" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-opacity=".8"/>
+
+          <!-- 嘴 -->
+          <g id="mouth">
+            <path id="mouthLine" d="M110 157 q10 8 20 0" stroke="#1D4ED8" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+            <ellipse id="mouthOpen" cx="120" cy="159" rx="10" ry="3.6" fill="#93C5FD" stroke="#1D4ED8" stroke-width="1.6" opacity="0"/>
+            <ellipse id="lipLower" cx="120" cy="161.5" rx="6.5" ry="2.4" fill="#BFDBFE"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="who">
+        <h1>赵肖迪</h1>
+        <p>AI 应用开发工程师</p>
+      </div>
+
+      <div class="status" id="status"><i></i><span id="statusText">待命中</span></div>
+
+      <button class="btn" id="playAll">▶ 语音播报整份简历</button>
+      <button class="btn ghost" id="stopAll">■ 停止</button>
+
+      <div class="contact">
+        <div class="row"><span class="k">电话</span><span>183 3433 2330</span></div>
+        <div class="row"><span class="k">邮箱</span><span>17865717228@163.com</span></div>
+        <div class="row"><span class="k">意向</span><span>AI 应用开发工程师</span></div>
+        <div class="row"><span class="k">到岗</span><span>随时 · 期望薪资面议</span></div>
+      </div>
+
+      <nav class="nav">
+        <a href="#basic">基本信息</a>
+        <a href="#skill">技能特长</a>
+        <a href="#work">工作经历</a>
+        <a href="#project">项目经验</a>
+        <a href="#edu">教育背景</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- ================= 右：简历正文 ================= -->
+  <main>
+
+    <header class="hero">
+      <h2>赵肖迪</h2>
+      <p class="role">AI 应用开发工程师　·　24 岁　·　本科软件工程　·　中共党员</p>
+      <div class="tags">
+        <span class="tag">LangGraph / Agent 编排</span>
+        <span class="tag">RAG / Agentic RAG</span>
+        <span class="tag p">MCP / A2A</span>
+        <span class="tag p">Milvus / 混合检索</span>
+        <span class="tag g">SSE / 断点续传 / 熔断降级</span>
+      </div>
+    </header>
+
+    <!-- 基本信息 -->
+    <section class="sec" id="basic">
+      <div class="sec-h">
+        <span class="no">01</span><h3>基本信息</h3><span class="line"></span>
+        <button class="saybtn" data-sec="basic">🔊 听这段</button>
+      </div>
+      <div class="kv">
+        <div class="cell" data-say><div class="k">姓 名</div><div class="v">赵肖迪</div></div>
+        <div class="cell" data-say><div class="k">年 龄</div><div class="v">24 岁</div></div>
+        <div class="cell" data-say><div class="k">性 别</div><div class="v">男</div></div>
+        <div class="cell" data-say><div class="k">政治面貌</div><div class="v">中共党员</div></div>
+        <div class="cell" data-say><div class="k">工作年限</div><div class="v">3 年</div></div>
+        <div class="cell" data-say><div class="k">学 历</div><div class="v">全日制本科 · 软件工程</div></div>
+        <div class="cell" data-say><div class="k">求职意向</div><div class="v">AI 应用开发工程师</div></div>
+        <div class="cell" data-say><div class="k">期望薪资</div><div class="v">面议</div></div>
+        <div class="cell" data-say><div class="k">入职时间</div><div class="v">随时到岗</div></div>
+      </div>
+    </section>
+
+    <!-- 技能特长 -->
+    <section class="sec" id="skill">
+      <div class="sec-h">
+        <span class="no">02</span><h3>技能特长</h3><span class="line"></span>
+        <button class="saybtn" data-sec="skill">🔊 听这段</button>
+      </div>
+      <div class="skill">
+        <div class="item" data-say><span class="idx">1</span><span class="tx"><b>AI 应用架构与 Agent 编排：</b>熟悉 Agent 多智能体编排、LangChain / LangGraph、Prompt 工程与 AI 应用工程化落地，具备从原型验证到生产部署的实践经验。</span></div>
+        <div class="item" data-say><span class="idx">2</span><span class="tx"><b>RAG 知识库与 Agentic RAG：</b>掌握 RAG 知识库构建，熟悉 RAG 与多模态 RAG 的编排模式，能够将检索决策嵌入 Agent 推理循环，突破单次静态检索局限。</span></div>
+        <div class="item" data-say><span class="idx">3</span><span class="tx"><b>MCP / A2A 与系统集成：</b>熟悉 MCP（Model Context Protocol）与 A2A 协议，能够通过标准化上下文连接器实现 Agent 与外部工具、数据源及企业系统的解耦集成。</span></div>
+        <div class="item" data-say><span class="idx">4</span><span class="tx"><b>Embedding 与向量检索优化：</b>熟悉 Embedding 模型选型，掌握 Milvus / Redis Stack / Elasticsearch 等向量数据库的检索优化与 Reranker 重排序调优。</span></div>
+        <div class="item" data-say><span class="idx">5</span><span class="tx"><b>混合检索与融合排序：</b>熟悉 Dense + BM25 Sparse 混合检索与 RRF 融合排序策略，能够根据召回场景组合稠密与稀疏检索通道，提升召回质量。</span></div>
+        <div class="item" data-say><span class="idx">6</span><span class="tx"><b>本地化模型部署：</b>掌握 Ollama、Xinference 等本地化模型部署方式，具备模型服务化、推理环境配置与基础调优能力。</span></div>
+        <div class="item" data-say><span class="idx">7</span><span class="tx"><b>AI 辅助研发提效：</b>熟练运用 Cursor、Codex、DeepSeek Harness、ClaudeCode + DeepSeek 等 AI 编程工具，贯穿需求分析、代码生成、调试与重构全流程，显著提升研发效能。</span></div>
+        <div class="item" data-say><span class="idx">8</span><span class="tx"><b>中间件与数据库：</b>熟练运用 Redis、RabbitMQ、Elasticsearch、Canal 等中间件；以 MySQL 为核心，具备扎实的 SQL 优化与数据库调优能力。</span></div>
+      </div>
+    </section>
+
+    <!-- 工作经历 -->
+    <section class="sec" id="work">
+      <div class="sec-h">
+        <span class="no">03</span><h3>工作经历</h3><span class="line"></span>
+        <button class="saybtn" data-sec="work">🔊 听这段</button>
+      </div>
+      <div class="job">
+        <div class="job-top">
+          <span class="co">河南晨讯云文化科技有限公司</span>
+          <span class="pos">AI 智能应用开发工程师</span>
+          <span class="time">2023.10 – 至今</span>
+        </div>
+        <p class="duty" data-say><b>1. AI 中台与智能体编排：</b>参与 AI 中台架构设计，负责多智能体编排、意图路由与业务场景接入机制建设，支撑复杂业务场景的快速落地与扩展。</p>
+        <p class="duty" data-say><b>2. RAG 知识库与语义检索：</b>构建垂直领域知识库与语义检索链路，负责 Embedding 选型、召回与重排策略优化，提升智能问答的准确性与稳定性。</p>
+        <p class="duty" data-say><b>3. Agentic RAG 与工具调用：</b>基于 Tool Calling、MCP 等标准化方式封装业务能力，实现 Agent 与外部工具、数据源及业务系统的解耦集成，并将检索决策嵌入 Agent 推理循环。</p>
+        <p class="duty" data-say><b>4. 大模型工程化与交互体验：</b>负责流式输出、会话管理、断点续传与提示词热更新等工程化能力建设，提升大模型应用的交互体验、可维护性与业务合规性。</p>
+        <p class="duty" data-say><b>5. 模型服务与稳定性保障：</b>熟悉模型选型、本地化部署与推理服务化，具备模型路由、Token 限流、熔断降级与超时兜底等稳定性保障经验。</p>
+        <p class="duty" data-say><b>6. 混合检索与向量库优化：</b>掌握向量数据库检索优化、Dense + BM25 混合检索与 RRF 融合排序策略，结合 Reranker 重排序持续提升召回质量。</p>
+        <p class="duty" data-say><b>7. 知识库构建与持续更新：</b>负责面向 RAG 的领域知识抽取、清洗、切分与向量化入库，建立知识增量更新与版本管理机制，保障知识库内容的时效性、一致性与可追溯性。</p>
+        <p class="duty" data-say><b>8. 效果评估与调优闭环：</b>搭建离线评测集与在线 A/B 实验，跟踪召回准确率、问答解决率、Token 成本与响应延迟等指标，基于 Badcase 回流持续优化 Prompt、检索策略与重排规则。</p>
+      </div>
+    </section>
+
+    <!-- 项目经验 -->
+    <section class="sec" id="project">
+      <div class="sec-h">
+        <span class="no">04</span><h3>项目经验</h3><span class="line"></span>
+        <button class="saybtn" data-sec="project">🔊 听这段</button>
+      </div>
+
+      <!-- FitPilot -->
+      <article class="proj">
+        <div class="proj-top">
+          <span class="nm">FitPilot 智练 · 智慧健身多智能体平台</span>
+          <span class="role">AI 应用开发</span>
+          <span class="time">2026.06 – 至今</span>
+        </div>
+        <p class="bg" data-say><b>项目背景：</b>为连锁社区健身服务机构设计智能健身助手平台，面向会员、教练及前台提供课程咨询、训练计划、营养建议、会员权益答疑等服务。搭建轻量化 LangGraph 多智能体中台，以 IntentAgent 意图路由转发为核心，通过 Tool Calling 对接健身业务系统，拉取课程排期、教练排班、会员卡状态、场地预约等真实数据，完成课程与动作知识语义匹配，为多端提供可复用 AI 问答能力。</p>
+        <ul>
+          <li data-say>基于 LangGraph 搭建轻量化智能体中台，设计 IntentAgent 意图路由节点，通过条件分支将用户请求精准分发至课程咨询、训练计划、营养建议、会员服务、诉求反馈及兜底 Agent；封装 BaseNodeAgent 公共父类，统一大模型初始化、Prompt 注入、工具绑定与超时异常兜底，新增打卡提醒、体测解读类 Agent 可插件化接入，聚焦业务逻辑开发。</li>
+          <li data-say>使用 Qwen3-Embedding 将课程、动作知识库向量化存入 Milvus，结合业务知识库规模采用稠密向量余弦相似度检索满足匹配需求，未过度引入混合检索与重排序，体现 Embedding 选型与检索方案按场景取舍的能力；基于 Tool Calling 封装课程查询、约课/取消预约、教练排班查询工具，通过服务发现调用健身业务系统接口，返回结构化预约、课程卡片，打通大模型到业务系统链路。</li>
+          <li data-say>将检索与业务工具作为节点嵌入 Agent 执行图，形成 Agentic RAG 的轻量落地：Agent 根据用户意图动态决定是否检索课程/动作知识、调用约课工具或直接回答；持久化会话元数据并缓存对话状态，依靠 taskId/contextId 实现多轮对话断点续传，支持会员中途退出后继续生成训练计划；采用 SSE 流式输出回答，结合状态标记支持用户主动终止生成；通过消息队列处理预约成功通知、对话记录异步落库、知识库增量更新，保障对话主链路低延迟。</li>
+          <li data-say>将训练计划、营养问答、课程咨询等智能体 Prompt 托管至配置中心，后台线程轮询配置变更，MD5 比对校验后内存刷新 Prompt，无需重启服务即可迭代话术规则，支持一键回滚，体现 Prompt 工程与知识库持续更新的工程化能力。</li>
+        </ul>
+        <div class="ptags">
+          <span class="tag">LangGraph</span><span class="tag">IntentAgent</span><span class="tag">Tool Calling</span>
+          <span class="tag">Qwen3-Embedding</span><span class="tag">Milvus</span><span class="tag">SSE</span>
+        </div>
+      </article>
+
+      <!-- 医智导诊 -->
+      <article class="proj">
+        <div class="proj-top">
+          <span class="nm">医智导诊 · 基于 A2A 范式的智慧医疗多智能体平台</span>
+          <span class="role">AI 应用开发</span>
+          <span class="time">2026.01 – 2026.05</span>
+        </div>
+        <p class="bg" data-say><b>项目背景：</b>为社区医院设计研发智能医疗助手平台，底层对接医院原有核心业务系统，搭建参考 A2A 规范的标准化多智能体协作中台。面向患者、医护、后台管理员提供智能导诊、科室/医生推荐、健康科普、挂号预约、药品科普查询等服务。各医疗 Agent 通过 Agent Card 声明能力，支持标准化能力发现、任务委派、流式事件推送，通过 Tool Calling 打通院内业务系统，实现 AI 能力与原有医疗系统解耦、统一管控，满足医疗场景合规、可审计要求。</p>
+        <ul>
+          <li data-say>参考 A2A 协议规范，自研兼容 A2A 交互范式的多智能体网关平台，支持 Agent Card 能力声明、标准化任务委派、流式事件回传；导诊、挂号、科普等医疗 Agent 对外暴露 Agent Card，定义技能、出入参、鉴权与审计规则；平台作为 A2A 网关与 Client 统一做能力发现、任务分发，小程序、医生后台等多端复用 AI 能力，统一访问鉴权与操作日志留存，适配医疗合规审计要求。</li>
+          <li data-say>基于 LangGraph 构建 Agent 内部执行图，IntentAgent 作为路由型 A2A Client Agent，读取 Agent Card 元信息做下游能力检索，依靠 A2A task/message 机制自动将患者请求委派给导诊分诊、科室推荐、药品科普、挂号预约、兜底 Agent；封装 BaseA2AAgent/BaseNodeAgent 父类，统一 Agent Card 注册、大模型初始化、合规 Prompt 注入、工具绑定、A2A 任务生命周期管理、超时熔断兜底；新增随访、宣教类医疗 Agent 可按 A2A 规范插件化注册接入。</li>
+          <li data-say>使用 bge 对症状库、科室说明、疾病科普文档向量化存入 Milvus；针对医疗问诊高召回准确率要求，采用稠密向量 + 关键词混合检索，RRF 融合多路召回结果，搭配 Reranker 重排序，提升症状-科室、症状-疾病匹配精度；并将检索决策嵌入 Agent 推理循环，支持 Agentic RAG 按需检索与多轮追问，而非单次静态检索。</li>
+          <li data-say>基于 Tool Calling 封装号源查询、预约挂号工具，通过服务发现动态调用院内核心业务系统接口，Agent 以标准化 Artifact 结构返回医生卡片、号源卡片给前端，形成完整业务闭环；持久化会话与 A2A 任务元数据，缓存对话上下文、任务运行状态，依靠 taskId/contextId 关联跨轮次 A2A 任务，支持患者中断咨询后恢复导诊、挂号流程；SSE 流式推送 A2A 任务事件与回答内容，结合状态标记与 A2A 原生 cancel 能力，支持用户随时终止生成，同时留存中断审计日志。</li>
+          <li data-say>将导诊规则、药品科普禁忌、分诊策略等 Prompt 托管至配置中心，后台轮询监听配置变更，MD5 校验后热加载；同步更新对应 Agent Card 内的技能描述，保证能力声明和实际提示逻辑一致，不重启服务即可迭代分诊规则、合规话术，支持版本快速回滚。</li>
+        </ul>
+        <div class="ptags">
+          <span class="tag p">A2A</span><span class="tag p">Agent Card</span><span class="tag">bge</span>
+          <span class="tag">RRF</span><span class="tag">Reranker</span><span class="tag">Milvus</span>
+        </div>
+      </article>
+
+      <!-- 云选商城 -->
+      <article class="proj">
+        <div class="proj-top">
+          <span class="nm">云选商城 · AI 智能导购与商品语义检索平台（B2C 电商）</span>
+          <span class="role">AI 应用开发</span>
+          <span class="time">2025.08 – 2025.11</span>
+        </div>
+        <p class="bg" data-say><b>项目背景：</b>为垂直类电商平台建设 AI 智能导购与商品语义检索能力，覆盖商品理解、自然语言找货、多轮导购问答、客服辅助与搜索转化提升。项目重点解决商品语义召回、RAG 问答准确性、大模型流式输出体验、Token 成本控制以及大模型异常降级等问题，提升搜索转化率与客服效率。</p>
+        <ul>
+          <li data-say>设计"意图识别—商品语义召回—RAG 问答—推荐解释—多轮对话"链路，支持用户通过自然语言描述需求找商品、咨询卖点/规格/售后问题；通过会话状态管理与上下文压缩提升多轮导购体验。</li>
+          <li data-say>对商品标题、属性、详情、评价等数据进行清洗、切分与 Embedding 向量化，构建向量索引；采用关键词召回与向量召回混合检索，结合重排结果注入 Prompt，提升模糊需求、长尾 Query 和口语化表达的商品命中率。</li>
+          <li data-say>建设模型路由与统一 Prompt 模板管理，支持 Prompt 版本管理、Token 配额、流式输出、超时重试与降级策略；针对 AI 导购服务配置按 Token 维度的限流与熔断规则，大模型超时或异常时自动降级为关键词搜索与 FAQ 兜底。</li>
+          <li data-say>针对高频问题、热门商品语义向量和召回结果设计多级缓存与语义缓存；增加会话并发控制与幂等处理，支撑大促期间高并发 AI 问答与语义检索请求，降低平均响应延迟与模型调用成本。</li>
+          <li data-say>搭建离线评测集与在线 A/B 实验，跟踪搜索转化率、点击率、问答解决率、人工客服转接率、Token 成本与 P95 延迟；基于 Badcase 回流持续优化 Prompt、召回策略、重排规则与 FAQ 知识库。</li>
+          <li data-say>构建商品 FAQ、售后政策等知识库，基于 RAG 生成客服话术建议与商品解释，支持引用溯源与低置信度转人工，提升客服响应效率与回答一致性。</li>
+        </ul>
+        <div class="ptags">
+          <span class="tag">混合检索</span><span class="tag">语义缓存</span><span class="tag g">Token 限流</span>
+          <span class="tag g">降级兜底</span><span class="tag">A/B 实验</span>
+        </div>
+      </article>
+
+      <!-- 企知云 -->
+      <article class="proj">
+        <div class="proj-top">
+          <span class="nm">企知云 · 基于 MCP 的企业知识中枢与数据分析 Agent 平台</span>
+          <span class="role">AI 应用开发</span>
+          <span class="time">2024.10 – 2025.06</span>
+        </div>
+        <p class="bg" data-say><b>项目背景：</b>面向企业内部的制度问答、工单辅助、经营数据查询与跨系统业务办理场景，建设基于 MCP 标准化上下文连接器的智能体平台，将企业文档库、工单系统、CRM 与数据仓库统一接入 Agent，支持自然语言问答、多轮任务办理与数据分析。</p>
+        <ul>
+          <li data-say>基于 MCP 标准化上下文连接器接入企业文档库、工单、CRM 与数据仓库，实现 Agent 与外部工具、数据源及企业系统的解耦集成，支撑多端复用与统一权限审计。</li>
+          <li data-say>基于 LangGraph 编排 Agentic RAG 流程，将检索决策嵌入 Agent 推理循环，结合多轮检索、工具调用与 Text-to-SQL 数据分析，支持复杂业务问答与经营指标查询，而非单次静态检索。</li>
+          <li data-say>基于 Ollama、Xinference 完成 Embedding 与生成模型本地化部署，设计模型路由、Token 配额、限流降级与离线评测/A/B 实验闭环，在合规可控前提下优化成本与响应延迟。</li>
+        </ul>
+        <div class="ptags">
+          <span class="tag p">MCP</span><span class="tag">Text-to-SQL</span>
+          <span class="tag">Ollama / Xinference</span><span class="tag g">权限审计</span>
+        </div>
+      </article>
+
+      <!-- 视界智审 -->
+      <article class="proj">
+        <div class="proj-top">
+          <span class="nm">视界智审 · 多模态内容合规审核与生成辅助平台</span>
+          <span class="role">AI 应用开发</span>
+          <span class="time">2024.03 – 2024.09</span>
+        </div>
+        <p class="bg" data-say><b>项目背景：</b>面向品牌营销素材的图文、视频内容审核与生成辅助场景，建设多模态 RAG 知识库与审核 Agent，支持素材语义检索、相似风险召回、合规解释与优化建议生成，降低人工审核压力与误审漏审风险。</p>
+        <ul>
+          <li data-say>构建图文/视频多模态 RAG 知识库，完成多模态 Embedding 选型、内容切分与向量化入库 Milvus / Elasticsearch，支持素材语义检索、相似内容召回与多模态知识关联。</li>
+          <li data-say>采用 Dense + BM25 Sparse 混合检索、RRF 融合排序与 Reranker 重排序，结合 Prompt 工程实现合规风险识别、引用溯源与审核解释生成，提升召回质量与审核可解释性。</li>
+          <li data-say>搭建离线评测集与 Badcase 回流机制，运用 Cursor 等 AI 编程工具提升研发效率，持续优化多模态召回策略、重排规则与审核 Prompt，降低误审漏审率。</li>
+        </ul>
+        <div class="ptags">
+          <span class="tag">多模态 RAG</span><span class="tag">Dense + BM25</span>
+          <span class="tag">RRF</span><span class="tag">引用溯源</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- 教育背景 -->
+    <section class="sec" id="edu">
+      <div class="sec-h">
+        <span class="no">05</span><h3>教育背景</h3><span class="line"></span>
+        <button class="saybtn" data-sec="edu">🔊 听这段</button>
+      </div>
+      <div class="job">
+        <div class="job-top">
+          <span class="co">全日制本科 · 软件工程</span>
+          <span class="time">2021.09 – 2025.06</span>
+        </div>
+        <p class="duty" data-say>英语四级，具备英文技术文档阅读能力。</p>
+      </div>
+      <div class="honor" style="margin-top:12px">
+        <div class="cell" data-say><em>荣 誉</em>国家奖学金</div>
+        <div class="cell" data-say><em>荣 誉</em>校级奖学金</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- 字幕条 -->
+<div class="cap" id="cap">
+  <div class="cap-in">
+    <span class="cap-dot"></span>
+    <span class="cap-tx" id="capTx"></span>
+    <select id="rate" title="语速">
+      <option value="0.9">0.9×</option>
+      <option value="1" selected>1.0×</option>
+      <option value="1.15">1.15×</option>
+    </select>
+    <button class="cap-btn" id="capPause">暂停</button>
+    <button class="cap-btn" id="capStop">停止</button>
+  </div>
+</div>
+
+<script>
+/* ============ 语音播报 ============ */
+const synth = window.speechSynthesis;
+let voice = null;
+function pickVoice(){
+  if(!synth) return;
+  const vs = synth.getVoices() || [];
+  voice = vs.find(v=>/zh[-_]CN/i.test(v.lang) && /(Xiaoxiao|Yunxi|Huihui|Yunyang|Yaoyao|female)/i.test(v.name))
+       || vs.find(v=>/zh[-_]CN/i.test(v.lang)) || vs.find(v=>/^zh/i.test(v.lang)) || null;
+}
+if(synth){ pickVoice(); synth.onvoiceschanged = pickVoice; }
+
+const cap = document.getElementById("cap");
+const capTx = document.getElementById("capTx");
+const capPause = document.getElementById("capPause");
+const statusEl = document.getElementById("status");
+const statusTx = document.getElementById("statusText");
+
+const st = { list: [], i: 0, playing: false, token: 0, timer: null, cur: null };
+
+function setStatus(t, live){
+  statusTx.textContent = t;
+  statusEl.classList.toggle("live", !!live);
+  document.body.classList.toggle("speaking", !!live);
+}
+function mark(el){
+  if(st.cur) st.cur.classList.remove("speaking");
+  st.cur = el || null;
+  if(el){
+    el.classList.add("speaking");
+    try{ el.scrollIntoView({block:"center", behavior:"smooth"}); }catch(e){}
+  }
+}
+function clearMark(){ mark(null); }
+
+function collect(root){
+  const nodes = Array.from(root.querySelectorAll("[data-say]"));
+  return nodes.filter(n => (n.innerText || "").trim().length > 0);
+}
+function textOf(el){
+  return (el.innerText || "").replace(/\s+/g, " ").trim();
+}
+
+function start(nodes){
+  if(!nodes.length) return;
+  stopSilent();
+  st.list = nodes;
+  st.i = 0;
+  st.playing = true;
+  cap.classList.add("show");
+  capPause.textContent = "暂停";
+  speakCurrent();
+}
+
+function speakCurrent(){
+  const token = ++st.token;
+  const el = st.list[st.i];
+  if(!el){ finish(); return; }
+
+  const text = textOf(el);
+  capTx.textContent = text.length > 90 ? text.slice(0, 90) + "…" : text;
+  mark(el);
+  setStatus("正在播报", true);
+
+  const advance = () => {
+    if(token !== st.token) return;
+    if(!st.playing) return;
+    st.i++;
+    if(st.i >= st.list.length){ finish(); return; }
+    speakCurrent();
+  };
+  const done = () => {
+    if(token !== st.token) return;
+    setStatus("正在播报", false);
+    advance();
+  };
+  // 语音不可用（没有中文音色 / 被系统禁用）时，按字数节奏推进，避免瞬间跳完
+  const fallback = (msg) => {
+    if(token !== st.token) return;
+    if(msg) setStatus(msg, false);
+    if(st.timer) clearTimeout(st.timer);
+    st.timer = setTimeout(() => { setStatus("正在播报", false); advance(); },
+                          Math.max(1500, text.length * 120));
+  };
+
+  if(!synth){ fallback(); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "zh-CN";
+  if(voice) u.voice = voice;
+  u.rate = parseFloat(document.getElementById("rate").value) || 1;
+  u.pitch = 1.02;
+  u.onend = done;
+  u.onerror = () => fallback("语音不可用 · 文字模式");
+  synth.speak(u);
+}
+
+function finish(){
+  st.playing = false;
+  st.token++;
+  clearMark();
+  setStatus("播报完毕", false);
+  capPause.textContent = "继续";
+}
+function stopSilent(){
+  st.token++;
+  if(st.timer){ clearTimeout(st.timer); st.timer = null; }
+  if(synth) synth.cancel();
+  st.playing = false;
+}
+function stopAll(){
+  stopSilent();
+  clearMark();
+  setStatus("待命中", false);
+  cap.classList.remove("show");
+  capPause.textContent = "暂停";
+}
+function pauseResume(){
+  if(!st.playing){
+    if(!st.list.length) return;
+    st.playing = true;
+    capPause.textContent = "暂停";
+    speakCurrent();
+    return;
+  }
+  stopSilent();
+  setStatus("已暂停", false);
+  clearMark();
+  capPause.textContent = "继续";
+}
+
+/* 按钮 */
+document.getElementById("playAll").onclick = () => start(collect(document.body));
+document.getElementById("stopAll").onclick = stopAll;
+document.getElementById("capStop").onclick = stopAll;
+capPause.onclick = pauseResume;
+document.getElementById("rate").onchange = () => {
+  if(st.playing){ const i = st.i; stopSilent(); st.i = i; st.playing = true; speakCurrent(); }
+};
+
+/* 每段「听这段」 */
+document.querySelectorAll(".saybtn").forEach(btn => {
+  btn.onclick = (e) => {
+    e.stopPropagation();
+    const sec = document.getElementById(btn.dataset.sec);
+    start(collect(sec));
+    btn.classList.add("on");
+    setTimeout(()=>btn.classList.remove("on"), 1200);
+  };
+});
+
+/* 点任意一段，从这一段开始读 */
+document.querySelectorAll("[data-say]").forEach(el => {
+  el.style.cursor = "pointer";
+  el.addEventListener("click", () => {
+    const all = collect(document.body);
+    const idx = all.indexOf(el);
+    if(idx < 0) return;
+    stopSilent();
+    st.list = all; st.i = idx; st.playing = true;
+    cap.classList.add("show");
+    capPause.textContent = "暂停";
+    speakCurrent();
+  });
+});
+
+/* 键盘 */
+document.addEventListener("keydown", e => {
+  if(e.code === "Space" && e.target === document.body){ e.preventDefault(); pauseResume(); }
+  if(e.code === "Escape"){ stopAll(); }
+});
+
+/* 眨眼 */
+setInterval(()=>{
+  if(Math.random() > .55){
+    document.body.classList.add("blink");
+    setTimeout(()=>document.body.classList.remove("blink"), 170);
+  }
+}, 3400);
+
+/* 切走时暂停 */
+document.addEventListener("visibilitychange", ()=>{
+  if(document.hidden && st.playing) pauseResume();
+});
+
+if(synth){
+  setTimeout(function(){
+    const hasZH = (synth.getVoices() || []).some(v => /^zh/i.test(v.lang));
+    if(!hasZH && statusTx.textContent === "待命中"){
+      statusTx.textContent = "无中文语音 · 文字模式";
+      statusEl.classList.remove("live");
+    }
+  }, 900);
+}else{
+  statusTx.textContent = "浏览器不支持语音";
+  const b = document.getElementById("playAll");
+  b.disabled = true; b.style.opacity = .5;
+}
+</script>
+</body>
+</html>
